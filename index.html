@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intent Received</title>
+   <style>
+    body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 40px 20px; /* extra vertical padding for centering effect */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh; /* ensures vertical centering */
+        box-sizing: border-box;
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 32px; /* increased size */
+        font-weight: bold;
+        color: #222;
+    }
+
+    .parameter {
+        margin-bottom: 15px;
+        padding: 12px 16px;
+        background-color: #f5f5f5;
+        border-radius: 5px;
+        width: 100%;
+    }
+
+    .parameter-name {
+        font-weight: bold;
+        color: #555;
+    }
+
+    .parameter-value {
+        margin-left: 10px;
+        color: #000;
+    }
+</style>
+
+</head>
+<body>
+    <div class="header">
+        ✅ Intent Received
+    </div>
+    
+    <div id="parameters">
+        <div class="parameter">
+            <span class="parameter-name">empID:</span>
+            <span class="parameter-value" id="empID">🚫ERROR - Not provided</span>
+        </div>
+        <div class="parameter">
+            <span class="parameter-name">Package Name:</span>
+            <span class="parameter-value" id="packageName">🚫ERROR - Not provided</span>
+        </div>
+        <div class="parameter">
+            <span class="parameter-name">SHA-256 Fingerprint:</span>
+            <span class="parameter-value" id="signingCertificate">🚫ERROR - Not provided</span>
+        </div>
+    </div>
+
+    <script>
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            
+            const empID = params.get('empID');
+            const packageName = params.get('packageName');
+            const signingCertificate = params.get('signingCertificate');
+            
+            if (empID) {
+                document.getElementById('empID').textContent = empID;
+            }
+            if (packageName) {
+                document.getElementById('packageName').textContent = packageName;
+            }
+            if (signingCertificate) {
+                document.getElementById('signingCertificate').textContent = signingCertificate;
+            }
+        }
+        
+        getQueryParams();
+    </script>
+</body>
+</html>
